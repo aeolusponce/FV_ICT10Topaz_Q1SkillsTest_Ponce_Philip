@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://pyscript.net/releases/2025.3.1/core.css" />
+<script type="module" src="https://pyscript.net/releases/2025.3.1/core.js"></script>
+<title>Skills Test</title>
+    
+        <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 480px;
+            margin: 40px auto;
+            background: #f6f4ef;
+            color: #2b2b2b;
+        }
+        h1 {
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+        .menu {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .price { color: #666; font-size: 0.9rem; }
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            background: #69513a;
+            color: #fff;
+            font-size: 1rem;
+        }
+        #order {
+            margin-top: 20px;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+ 
+    </style>
+</head>
+<body>
+
+    <h1>Minimalyst Coffee House</h1>
+    <p class="subtitle">Premium coffee, made simple.</p>
+
+    <div class="menu">
+        <div class="menu-item">
+            <label><input type="checkbox" id="item1" value="100"> Mocha</label>
+            <span class="price">₱100.00</span>
+        </div>
+        <div class="menu-item">
+            <label><input type="checkbox" id="item2" value="75"> Americano</label>
+            <span class="price">₱75.00</span>
+        </div>
+        <div class="menu-item">
+            <label><input type="checkbox" id="item3" value="100"> Spanish Latte</label>
+            <span class="price">₱100.00</span>
+        </div>
+        <div class="menu-item">
+            <label><input type="checkbox" id="item4" value="90"> Caffe Latte</label>
+            <span class="price">₱90.00</span>
+        </div>
+        <div class="menu-item">
+            <label><input type="checkbox" id="item5" value="110"> Macchiato</label>
+            <span class="price">₱110.00</span>
+        </div>
+    </div>
+
+    <button id="generatebutton" py-click="create_order">Generate Receipt</button>
+
+    <div id="order">
+        <p class="empty">Your receipt will appear here.</p>
+    </div>
+
+<script type="py">
+from pyscript import document
+
+def create_order(event):
+
+    order = document.getElementById("order")
+    order.innerHTML = ""
+
+    item1 = document.getElementById("item1")
+    item2 = document.getElementById("item2")
+    item3 = document.getElementById("item3")
+    item4 = document.getElementById("item4")
+    item5 = document.getElementById("item5")
+
+    price1 = float(item1.value) * item1.checked
+    price2 = float(item2.value) * item2.checked
+    price3 = float(item3.value) * item3.checked
+    price4 = float(item4.value) * item4.checked
+    price5 = float(item5.value) * item5.checked
+
+    line1 = ("Mocha - ₱" + str(price1) + "<br>") * item1.checked
+    line2 = ("Americano - ₱" + str(price2) + "<br>") * item2.checked
+    line3 = ("Spanish Latte - ₱" + str(price3) + "<br>") * item3.checked
+    line4 = ("Caffe Latte - ₱" + str(price4) + "<br>") * item4.checked
+    line5 = ("Macchiato - ₱" + str(price5) + "<br>") * item5.checked
+
+    subtotal = round(price1 + price2 + price3 + price4 + price5, 2)
+    vat = round(subtotal * 0.12, 2)
+    final_cost = round(subtotal + vat, 2)
+
+    order.innerHTML = (
+        line1 + line2 + line3 + line4 + line5
+        + "<br>Subtotal: ₱" + str(subtotal)
+        + "<br>VAT: ₱" + str(vat)
+        + "<br>Total: ₱" + str(final_cost)
+    )
+</script>
+
+</body>
+</html>
