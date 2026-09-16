@@ -73,23 +73,23 @@
 
     <div class="menu">
         <div class="menu-item">
-            <label><input type="checkbox" id="item1" value="100"> Mocha</label>
+            <label><input type="checkbox" id="dr1" value="100"> Mocha</label>
             <span class="price">₱100.00</span>
         </div>
         <div class="menu-item">
-            <label><input type="checkbox" id="item2" value="75"> Americano</label>
+            <label><input type="checkbox" id="dr2" value="75"> Americano</label>
             <span class="price">₱75.00</span>
         </div>
         <div class="menu-item">
-            <label><input type="checkbox" id="item3" value="100"> Spanish Latte</label>
+            <label><input type="checkbox" id="dr3" value="100"> Spanish Latte</label>
             <span class="price">₱100.00</span>
         </div>
         <div class="menu-item">
-            <label><input type="checkbox" id="item4" value="90"> Caffe Latte</label>
+            <label><input type="checkbox" id="dr4" value="90"> Caffe Latte</label>
             <span class="price">₱90.00</span>
         </div>
         <div class="menu-item">
-            <label><input type="checkbox" id="item5" value="110"> Macchiato</label>
+            <label><input type="checkbox" id="dr5" value="110"> Macchiato</label>
             <span class="price">₱110.00</span>
         </div>
     </div>
@@ -108,30 +108,30 @@ def create_order(event):
     order = document.getElementById("order")
     order.innerHTML = ""
 
-    item1 = document.getElementById("item1")
-    item2 = document.getElementById("item2")
-    item3 = document.getElementById("item3")
-    item4 = document.getElementById("item4")
-    item5 = document.getElementById("item5")
+    dr1 = document.getElementById("dr1")
+    dr2 = document.getElementById("dr2")
+    dr3 = document.getElementById("dr3")
+    dr4 = document.getElementById("dr4")
+    dr5 = document.getElementById("dr5")
 
-    price1 = float(item1.value) * item1.checked
-    price2 = float(item2.value) * item2.checked
-    price3 = float(item3.value) * item3.checked
-    price4 = float(item4.value) * item4.checked
-    price5 = float(item5.value) * item5.checked
+    pr1 = float(dr1.value) * dr1.checked
+    pr2 = float(dr2.value) * dr2.checked
+    pr3 = float(dr3.value) * dr3.checked
+    pr4 = float(dr4.value) * dr4.checked
+    pr5 = float(dr5.value) * dr5.checked
 
-    line1 = ("Mocha - ₱" + str(price1) + "<br>") * item1.checked
-    line2 = ("Americano - ₱" + str(price2) + "<br>") * item2.checked
-    line3 = ("Spanish Latte - ₱" + str(price3) + "<br>") * item3.checked
-    line4 = ("Caffe Latte - ₱" + str(price4) + "<br>") * item4.checked
-    line5 = ("Macchiato - ₱" + str(price5) + "<br>") * item5.checked
+    li1 = ("Mocha - ₱" + str(pr1) + "<br>") * dr1.checked
+    li2 = ("Americano - ₱" + str(pr2) + "<br>") * dr2.checked
+    li3 = ("Spanish Latte - ₱" + str(pr3) + "<br>") * dr3.checked
+    li4 = ("Caffe Latte - ₱" + str(pr4) + "<br>") * dr4.checked
+    li5 = ("Macchiato - ₱" + str(pr5) + "<br>") * dr5.checked
 
-    subtotal = round(price1 + price2 + price3 + price4 + price5, 2)
+    subtotal = round(pr1 + pr2 + pr3 + pr4 + pr5, 2)
     vat = round(subtotal * 0.12, 2)
     final_cost = round(subtotal + vat, 2)
 
     order.innerHTML = (
-        line1 + line2 + line3 + line4 + line5
+        li1 + li2 + li3 + li4 + li5
         + "<br>Subtotal: ₱" + str(subtotal)
         + "<br>VAT: ₱" + str(vat)
         + "<br>Total: ₱" + str(final_cost)
